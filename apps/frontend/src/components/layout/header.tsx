@@ -2,12 +2,14 @@
 
 import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { useAuthStore } from '@/store/auth.store';
 import { useProfile } from '@/hooks/useSettings';
 import { ConfirmationDialog } from '@/components/ui';
 import { getInitials } from '@/utils';
 
 export function Header() {
+  const pathname = usePathname();
   const [menuOpened, setMenuOpened] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
@@ -66,13 +68,22 @@ export function Header() {
             </Link>
             <div className="hidden lg:ml-6 lg:block">
               <div className="flex space-x-2">
-                <Link href="/dashboard" className="selected-nav">
+                <Link
+                  href="/dashboard"
+                  className={pathname === '/dashboard' ? 'selected-nav' : 'unselected-nav'}
+                >
                   Dashboard
                 </Link>
-                <Link href="/events" className="unselected-nav">
+                <Link
+                  href="/events"
+                  className={pathname === '/events' ? 'selected-nav' : 'unselected-nav'}
+                >
                   Events
                 </Link>
-                <Link href="/credentials" className="unselected-nav">
+                <Link
+                  href="/credential"
+                  className={pathname === '/credential' ? 'selected-nav' : 'unselected-nav'}
+                >
                   Credentials
                 </Link>
                 <Link href="/designs" className="unselected-nav">
@@ -306,14 +317,20 @@ export function Header() {
             </Link>
             <Link
               href="/events"
-              className="block rounded-sm px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
+              className={`block rounded-sm px-3 py-2 text-base font-medium ${pathname === '/events'
+                ? 'bg-gray-900 text-white'
+                : 'text-gray-300 hover:bg-gray-700 hover:text-white'
+                }`}
               onClick={() => setMobileMenuOpen(false)}
             >
               Events
             </Link>
             <Link
-              href="/credentials"
-              className="block rounded-sm px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
+              href="/credential"
+              className={`block rounded-sm px-3 py-2 text-base font-medium ${pathname === '/credential'
+                ? 'bg-gray-900 text-white'
+                : 'text-gray-300 hover:bg-gray-700 hover:text-white'
+                }`}
               onClick={() => setMobileMenuOpen(false)}
             >
               Credentials
