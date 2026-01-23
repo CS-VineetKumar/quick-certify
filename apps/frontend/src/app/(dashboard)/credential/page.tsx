@@ -104,30 +104,30 @@ export default function CredentialPage() {
       {/* Credentials Table */}
       <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700">
         <div className="overflow-x-auto">
-          <table className="w-full text-sm text-left text-gray-700">
-            <thead className="bg-gray-50 border-b border-gray-200">
+          <table className="w-full text-sm text-left text-gray-700 dark:text-gray-400">
+            <thead className="bg-gray-50 dark:bg-gray-700 border-b border-gray-200 dark:border-gray-600">
               <tr>
-                <th className="px-6 py-3 font-medium">Name</th>
-                <th className="px-6 py-3 font-medium">Email</th>
-                <th className="px-6 py-3 font-medium">Events</th>
-                <th className="px-6 py-3 font-medium">Issue Date</th>
-                <th className="px-6 py-3 font-medium">Status</th>
-                <th className="px-6 py-3 font-medium">Action</th>
+                <th className="px-6 py-3 font-medium text-gray-900 dark:text-white">Name</th>
+                <th className="px-6 py-3 font-medium text-gray-900 dark:text-white">Email</th>
+                <th className="px-6 py-3 font-medium text-gray-900 dark:text-white">Events</th>
+                <th className="px-6 py-3 font-medium text-gray-900 dark:text-white">Issue Date</th>
+                <th className="px-6 py-3 font-medium text-gray-900 dark:text-white">Status</th>
+                <th className="px-6 py-3 font-medium text-gray-900 dark:text-white">Action</th>
               </tr>
             </thead>
             <tbody>
               {credentials.map((credential) => (
                 <tr
                   key={credential.id}
-                  className="border-b border-gray-200 hover:bg-gray-50"
+                  className="border-b border-gray-200 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700"
                 >
-                  <td className="px-6 py-2">{credential.name}</td>
-                  <td className="px-6 py-2">{credential.email}</td>
-                  <td className="px-6 py-2">{credential.event}</td>
-                  <td className="px-6 py-2">{credential.issueDate}</td>
-                  <td className="px-6 py-2 text-gray-500">{credential.status}</td>
+                  <td className="px-6 py-2 dark:text-white">{credential.name}</td>
+                  <td className="px-6 py-2 dark:text-gray-300">{credential.email}</td>
+                  <td className="px-6 py-2 dark:text-gray-300">{credential.event}</td>
+                  <td className="px-6 py-2 dark:text-gray-300">{credential.issueDate}</td>
+                  <td className="px-6 py-2 text-gray-500 dark:text-gray-400">{credential.status}</td>
                   <td className="px-6 py-2">
-                    <Link href="/credential" className="text-blue-600 hover:underline">
+                    <Link href="/credential" className="text-blue-600 hover:underline dark:text-blue-400">
                       View
                     </Link>
                   </td>
@@ -139,13 +139,13 @@ export default function CredentialPage() {
       </div>
 
       {/* Pagination */}
-      <div className="flex justify-end px-4 py-3 border-t border-gray-200">
+      <div className="flex justify-end px-4 py-3 border-t border-gray-200 dark:border-gray-700">
         <ul className="flex text-sm">
           <li>
             <button
               onClick={() => setCurrentPage((prev) => Math.max(1, prev - 1))}
               disabled={currentPage === 1}
-              className="flex items-center justify-center px-3 h-9 border border-gray-200 hover:bg-gray-100 text-gray-700 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-transparent"
+              className="flex items-center justify-center px-3 h-9 border border-gray-200 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-transparent"
             >
               Previous
             </button>
@@ -154,10 +154,10 @@ export default function CredentialPage() {
             <li key={page}>
               <button
                 onClick={() => setCurrentPage(page)}
-                className={`flex items-center justify-center px-3 h-9 border border-gray-200 hover:bg-gray-100 ${
+                className={`flex items-center justify-center px-3 h-9 border border-gray-200 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700 ${
                   currentPage === page
-                    ? 'bg-gray-200 text-blue-600'
-                    : 'text-gray-700'
+                    ? 'bg-gray-200 dark:bg-gray-600 text-blue-600 dark:text-blue-400'
+                    : 'text-gray-700 dark:text-gray-300'
                 }`}
               >
                 {page}
@@ -168,7 +168,7 @@ export default function CredentialPage() {
             <button
               onClick={() => setCurrentPage((prev) => Math.min(totalPages, prev + 1))}
               disabled={currentPage === totalPages}
-              className="flex items-center justify-center px-3 h-9 border border-gray-200 hover:bg-gray-100 text-gray-700 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-transparent"
+              className="flex items-center justify-center px-3 h-9 border border-gray-200 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-transparent"
             >
               Next
             </button>
